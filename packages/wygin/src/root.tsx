@@ -18,18 +18,16 @@ export default component$(() => {
    */
 
   return (
-    <MantineProvider>
-      <QwikCityProvider>
-        <head>
-          <meta charSet="utf-8" />
-          <link rel="manifest" href="/manifest.json" />
-          <RouterHead />
-        </head>
-        <body lang="en">
-          <RouterOutlet />
-          <ServiceWorkerRegister />
-        </body>
-      </QwikCityProvider>
-    </MantineProvider>
+    <QwikCityProvider>
+      <head>
+        <meta charSet="utf-8" />
+        <link rel="manifest" href="/manifest.json" />
+        <RouterHead />
+      </head>
+      <body lang="en">
+        <RouterOutlet />
+        <ServiceWorkerRegister />
+      </body>
+    </QwikCityProvider>
   );
 });
