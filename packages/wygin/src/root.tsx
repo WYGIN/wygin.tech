@@ -5,6 +5,7 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
+import { MantineProvider } from '~/components/MantineProvider/MantineProvider';
 
 import "./global.css";
 
@@ -17,16 +18,18 @@ export default component$(() => {
    */
 
   return (
-    <QwikCityProvider>
-      <head>
-        <meta charSet="utf-8" />
-        <link rel="manifest" href="/manifest.json" />
-        <RouterHead />
-      </head>
-      <body lang="en">
-        <RouterOutlet />
-        <ServiceWorkerRegister />
-      </body>
-    </QwikCityProvider>
+    <MantineProvider >
+      <QwikCityProvider>
+        <head>
+          <meta charSet="utf-8" />
+          <link rel="manifest" href="/manifest.json" />
+          <RouterHead />
+        </head>
+        <body lang="en">
+          <RouterOutlet />
+          <ServiceWorkerRegister />
+        </body>
+      </QwikCityProvider>
+    </MantineProvider>
   );
 });
