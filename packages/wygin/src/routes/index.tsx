@@ -12,7 +12,7 @@ export default component$(() => {
     <>
       <Hero />
       <Starter />
-      <Button color={'green'}>This is Flowbite Button</Button>
+      <Button color={"green"}>This is Flowbite Button</Button>
 
       <div role="presentation" class="ellipsis"></div>
       <div role="presentation" class="ellipsis ellipsis-purple"></div>
