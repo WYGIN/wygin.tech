@@ -15,6 +15,13 @@
       "when": 1686489304980,
       "tag": "0001_ambitious_wallop",
       "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1686493169006,
+      "tag": "0002_soft_miracleman",
+      "breakpoints": false
     }
   ]
 }
