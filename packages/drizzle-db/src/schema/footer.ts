@@ -6,32 +6,30 @@ import { z } from 'zod';
 import { posts } from './post';
 import { blogs } from './blog';
 import { pages } from './page';
-import { nav_items } from './navItem'; 
+import { nav_items } from './navItem';
 
-export const headers = mysqlTable('headers', {
+export const footers = mysqlTable('footers', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
   logo: text('logo').notNull().default('https://wygin.tech/wygin.svg'),
-  show_theme_toggle: boolean('show_theme_toggle').notNull().default(true),
-  show_search_icon: boolean('show_search_icon').default(true).notNull(),
+  show_social_icons: boolean('show_social_icons').notNull().default(true),
 }, (table) => {
   return {
-    unique__logo__show_theme_toggle__show_search_icon: uniqueIndex('unique__logo__show_theme_toggle__show_search_icon').on(table.logo, table.show_theme_toggle, table.show_search_icon),
+    unique__logo__show_social_icons: uniqueIndex('unique__logo__show_social_icons').on(table.logo, table.show_social_icons),
     index__id: index('index__id').on(table.id),
   }
 });
 
-export const header__relations = relations(headers, ({ many }) => ({
+export const footer__relations = relations(footers, ({ many }) => ({
   posts: many(posts),
   blogs: many(blogs),
   pages: many(pages),
   nav_items: many(nav_items),
 }))
 
-export const insert__headers = createInsertSchema(headers, {
+export const insert__footers = createInsertSchema(footers, {
   id: z.string().length(12),
   logo: z.string().url(),
-  show_theme_toggle: z.boolean(),
-  show_search_icon: z.boolean(),
+  show_social_icons: z.boolean(),
 });
 
-export const select__headers = createSelectSchema(headers);
+export const select__footers = createSelectSchema(footers);
