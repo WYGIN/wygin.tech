@@ -4,12 +4,12 @@ import { users } from './user';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
-export const accounts = mysqlTable('users', {
+export const accounts = mysqlTable('accounts', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
   user_id: varchar('user_id', { length: 256 }).notNull(),
   type: text('type').notNull(),
-  provider: text('provider').notNull(),
-  provider_account_id: text('provider_account_id').notNull(),
+  provider: varchar('provider', { length: 256 }).notNull(),
+  provider_account_id: varchar('provider_account_id', { length: 256 }).notNull(),
   refresh_token: text('refresh_token'),
   access_token: text('access_token'),
   expires_at: int('expires_at'),
@@ -24,7 +24,7 @@ export const accounts = mysqlTable('users', {
   }
 });
 
-export const accountRelations = relations(users, ({ one }) => ({
+export const accountRelations = relations(accounts, ({ one }) => ({
   user: one(users, {
     fields: [accounts.user_id],
     references: [users.id],

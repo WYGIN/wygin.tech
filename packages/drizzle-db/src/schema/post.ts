@@ -10,6 +10,8 @@ import { footers } from './footer';
 import { publications } from './publication';
 import { status, zodStatus } from './status';
 import { comments } from './comment';
+import { tags } from './tag';
+import { bookmarks } from './bookmark';
 
 export const posts = mysqlTable('posts', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
@@ -44,6 +46,7 @@ export const posts = mysqlTable('posts', {
 
 export const post__relations = relations(posts, ({ many, one }) => ({
   contributors: many(users),
+  tags: many(tags),
   comments: many(comments),
   author: one(users, {
     fields: [posts.author_id],
@@ -65,6 +68,7 @@ export const post__relations = relations(posts, ({ many, one }) => ({
     fields: [posts.publication_id],
     references: [publications.id]
   }),
+  bookmarks: many(bookmarks),
 }))
 
 export const insert__posts = createInsertSchema(posts, {

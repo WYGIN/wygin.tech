@@ -18,7 +18,7 @@ export const bookmarks = mysqlTable('bookmarks', {
   }
 });
 
-export const bookmark__relations = relations(bookmarks, ({ one }) => ({
+export const bookmark__relations = relations(bookmarks, ({ one, many }) => ({
   post: one(posts, {
     fields: [bookmarks.post_id],
     references: [posts.id]
@@ -30,7 +30,8 @@ export const bookmark__relations = relations(bookmarks, ({ one }) => ({
   user: one(users, {
     fields: [bookmarks.user_id],
     references: [users.id]
-  })
+  }),
+  followers: many(users, { relationName: 'followers' }),
 }))
 
 export const insert__bookmarks = createInsertSchema(bookmarks, {

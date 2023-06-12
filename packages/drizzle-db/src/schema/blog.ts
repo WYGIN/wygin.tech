@@ -8,6 +8,7 @@ import { headers } from './header';
 import { footers } from './footer';
 import { publications } from './publication';
 import { status, zodStatus } from './status';
+import { bookmarks } from './bookmark';
 
 export const blogs = mysqlTable('blogs', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
@@ -57,6 +58,7 @@ export const blog__relations = relations(blogs, ({ many, one }) => ({
     fields: [blogs.publication_id],
     references: [publications.id]
   }),
+  bookmarks: many(bookmarks),
 }))
 
 export const insert__blogs = createInsertSchema(blogs, {

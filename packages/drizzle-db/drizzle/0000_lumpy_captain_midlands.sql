@@ -1,10 +1,16 @@
-CREATE TABLE `users` (
+CREATE TABLE `accounts` (
 	`id` varchar(12) PRIMARY KEY NOT NULL,
-	`name` varchar(256),
-	`email` varchar(512),
-	`email_verified` boolean DEFAULT false,
-	`image` text,
-	`role` enum('user','editor','contributor','sponser','admin','owner') NOT NULL DEFAULT 'user');
+	`user_id` varchar(256) NOT NULL,
+	`type` text NOT NULL,
+	`provider` varchar(256) NOT NULL,
+	`provider_account_id` varchar(256) NOT NULL,
+	`refresh_token` text,
+	`access_token` text,
+	`expires_at` int,
+	`token_type` text,
+	`scope` text,
+	`id_token` text,
+	`session_state` text);
 
 CREATE TABLE `blogs` (
 	`id` varchar(12) PRIMARY KEY NOT NULL,
@@ -65,7 +71,8 @@ CREATE TABLE `nav_items` (
 	`id` varchar(12) PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`href` varchar(500) NOT NULL,
-	`label` text NOT NULL);
+	`label` text NOT NULL,
+	`parent_nav` varchar(12));
 
 CREATE TABLE `pages` (
 	`id` varchar(12) PRIMARY KEY NOT NULL,
@@ -143,6 +150,14 @@ CREATE TABLE `tag_followers` (
 	`tag_id` varchar(12),
 	`user_id` varchar(12));
 
+CREATE TABLE `users` (
+	`id` varchar(12) PRIMARY KEY NOT NULL,
+	`name` varchar(256),
+	`email` varchar(512),
+	`email_verified` boolean DEFAULT false,
+	`image` text,
+	`role` enum('user','editor','contributor','sponser','admin','owner') NOT NULL DEFAULT 'user');
+
 CREATE TABLE `user_follows` (
 	`follower_id` varchar(12) NOT NULL,
 	`following_id` varchar(12) NOT NULL);
@@ -152,9 +167,8 @@ CREATE TABLE `verificationTokens` (
 	`token` varchar(767) NOT NULL,
 	`expires` datetime(3));
 
-CREATE UNIQUE INDEX `unique__email` ON `users` (`email`);
-CREATE INDEX `index__id` ON `users` (`id`);
-CREATE INDEX `index__name` ON `users` (`name`);
+CREATE UNIQUE INDEX `unique__provider__provider_account_id` ON `accounts` (`provider`,`provider_account_id`);
+CREATE INDEX `index__user_id` ON `accounts` (`user_id`);
 CREATE UNIQUE INDEX `unique__slug` ON `blogs` (`slug`);
 CREATE UNIQUE INDEX `unique_title` ON `blogs` (`title`);
 CREATE INDEX `index__id` ON `blogs` (`id`);
@@ -201,6 +215,9 @@ CREATE INDEX `index_tag` ON `tags` (`category1`);
 CREATE UNIQUE INDEX `unique__publication_id__user_id` ON `tag_followers` (`tag_id`,`user_id`);
 CREATE INDEX `index__tag_id` ON `tag_followers` (`tag_id`);
 CREATE INDEX `index__user_id` ON `tag_followers` (`user_id`);
+CREATE UNIQUE INDEX `unique__email` ON `users` (`email`);
+CREATE INDEX `index__id` ON `users` (`id`);
+CREATE INDEX `index__name` ON `users` (`name`);
 CREATE UNIQUE INDEX `unique__follower_id__following_id` ON `user_follows` (`follower_id`,`following_id`);
 CREATE INDEX `index__follower_id` ON `user_follows` (`follower_id`);
 CREATE INDEX `index__following_id` ON `user_follows` (`following_id`);

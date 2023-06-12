@@ -31,7 +31,8 @@ export const user__relations = relations(publications, ({ many, one }) => ({
   owner: one(users, {
     fields: [publications.owner_id],
     references: [users.id]
-  })
+  }),
+  followers: many(users, { relationName: 'followers' }),
 }))
 
 export const insert__publications = createInsertSchema(publications, {

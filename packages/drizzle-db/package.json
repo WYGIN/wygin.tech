@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@planetscale/database": "^1.7.0",
+    "dotenv": "^16.1.4",
     "drizzle-orm": "^0.26.5",
     "drizzle-zod": "^0.4.3",
     "zod": "^3.21.4"
