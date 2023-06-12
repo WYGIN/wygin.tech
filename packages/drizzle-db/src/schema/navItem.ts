@@ -12,6 +12,7 @@ export const nav_items = mysqlTable('nav_items', {
   icon: text('name').notNull(),
   href: varchar('href', { length: 500 }).notNull(),
   label: text('label').notNull(),
+  parent_nav: varchar('parent_nav', { length: 12 }),
 }, (table) => {
   return {
     unique__href: uniqueIndex('unique__href').on(table.href),
@@ -19,10 +20,14 @@ export const nav_items = mysqlTable('nav_items', {
   }
 });
 
-export const nav_item__relations = relations(nav_items, ({ many }) => ({
+export const nav_item__relations = relations(nav_items, ({ many, one }) => ({
   headers: many(headers),
   footers: many(footers),
-  nav_items: many(nav_items)
+  nav_items: many(nav_items, { relationName: 'nav_items' }),
+  parent_nav_item: one(nav_items, {
+    fields: [nav_items.parent_nav],
+    references: [nav_items.id]
+  })
 }))
 
 export const insert__nav_items = createInsertSchema(nav_items, {

@@ -3,6 +3,12 @@ import { relations } from 'drizzle-orm';
 import { accounts } from './account';
 import { roles, zodRoles } from './role'
 import { sessions } from './session';
+import { user_follows } from './userFollower';
+import { tag_followers } from './tagFollower';
+import { publications } from './publication';
+import { bookmarks } from './bookmark';
+import { categories } from './category';
+import { comments } from './comment';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
@@ -23,7 +29,14 @@ export const users = mysqlTable('users', {
 
 export const user__relations = relations(users, ({ many }) => ({
   accounts: many(accounts),
-  sessions: many(sessions)
+  sessions: many(sessions),
+  following_users: many(user_follows, { relationName: 'following_tags' }),
+  follower_user: many(user_follows, { relationName: 'follower_users' }),
+  following_tags: many(tag_followers),
+  following_publications: many(publications),
+  bookmarks: many(bookmarks),
+  comments: many(comments),
+  following_categories: many(categories),
 }))
 
 export const insert__users = createInsertSchema(users, {

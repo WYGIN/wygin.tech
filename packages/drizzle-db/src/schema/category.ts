@@ -3,6 +3,7 @@ import { relations, sql } from 'drizzle-orm';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 import { posts } from './post';
+import { users } from './user';
 
 export const categories = mysqlTable('categories', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
@@ -21,6 +22,7 @@ export const categories = mysqlTable('categories', {
 
 export const category__relations = relations(categories, ({ many }) => ({
   posts: many(posts),
+  followers: many(users),
 }))
 
 export const insert__categories = createInsertSchema(categories, {
