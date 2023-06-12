@@ -6,8 +6,8 @@ import { z } from 'zod';
 
 export const sessions = mysqlTable('sessions', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
-  session_token: text('session_token').notNull(),
-  user_id: text('user_id').notNull(),
+  session_token: varchar('session_token', { length: 767 }).notNull(),
+  user_id: varchar('user_id', { length: 12 }).notNull(),
   expires: datetime('expires', { mode: 'date', fsp: 3 }).notNull(),
 }, (table) => {
   return {

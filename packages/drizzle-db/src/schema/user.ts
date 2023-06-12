@@ -9,7 +9,7 @@ import { z } from 'zod';
 export const users = mysqlTable('users', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
   name: varchar('name', { length: 256 }),
-  email: text('email'),
+  email: varchar('email', { length: 512 }),
   email_verified: boolean('email_verified').default(false),
   image: text('image'),
   role: roles,

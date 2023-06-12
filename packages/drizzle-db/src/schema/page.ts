@@ -18,9 +18,9 @@ export const pages = mysqlTable('pages', {
   featured_image: text('featured_image').notNull(),
   status: status,
   author_id: varchar('author_id', { length: 12 }).notNull(),
-  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).default(sql`(CURRENT_TIMESTAMP(3))`).notNull(),
+  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).notNull(),
   schema: text('schema').notNull(),
-  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).default(sql`NOW(3)`).notNull(),
+  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).notNull(),
   body: text('body').notNull(),
   header_id: varchar('header_id', { length: 12 }).notNull(),
   footer_id: varchar('footer_id', { length: 12 }).notNull(),
@@ -31,7 +31,7 @@ export const pages = mysqlTable('pages', {
   return {
     unique__slug: uniqueIndex('unique__slug').on(table.slug),
     unique_title: uniqueIndex('unique_title').on(table.title),
-    unique_description: uniqueIndex('unique_description').on(table.description),
+  //  unique_description: uniqueIndex('unique_description').on(table.description),
     index__id: index('index__id').on(table.id),
     index__title: index('index__title').on(table.title),
     index__slug: index('index__slug').on(table.slug)

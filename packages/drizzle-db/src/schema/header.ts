@@ -15,7 +15,7 @@ export const headers = mysqlTable('headers', {
   show_search_icon: boolean('show_search_icon').default(true).notNull(),
 }, (table) => {
   return {
-    unique__logo__show_theme_toggle__show_search_icon: uniqueIndex('unique__logo__show_theme_toggle__show_search_icon').on(table.logo, table.show_theme_toggle, table.show_search_icon),
+  //  unique__logo__show_theme_toggle__show_search_icon: uniqueIndex('unique__logo__show_theme_toggle__show_search_icon').on(table.logo, table.show_theme_toggle, table.show_search_icon),
     index__id: index('index__id').on(table.id),
   }
 });

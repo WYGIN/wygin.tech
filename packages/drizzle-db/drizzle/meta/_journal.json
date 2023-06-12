@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1686488855383,
-      "tag": "0000_red_martin_li",
-      "breakpoints": false
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1686489304980,
-      "tag": "0001_ambitious_wallop",
-      "breakpoints": false
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1686493169006,
-      "tag": "0002_soft_miracleman",
-      "breakpoints": false
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1686494345259,
-      "tag": "0003_great_overlord",
+      "when": 1686536376860,
+      "tag": "0000_purple_agent_brand",
       "breakpoints": false
     }
   ]

@@ -3,12 +3,12 @@ import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
 export const verificationTokens = mysqlTable('verificationTokens', {
-  identifier: text('identifier').notNull(),
-  token: text('token').notNull(),
+  identifier: varchar('identifier', { length: 767 }).notNull(),
+  token: varchar('token', { length: 767 }).notNull(),
   expires: datetime('expires', { mode: 'date', fsp: 3 }),
 }, (table) => {
   return {
-    unique__identifier__token: uniqueIndex('unique__identifier__token').on(table.identifier, table.token),
+    unique__token: uniqueIndex('unique__token').on(table.token),
   }
 });
 

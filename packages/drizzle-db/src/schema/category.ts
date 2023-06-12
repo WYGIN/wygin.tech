@@ -9,8 +9,8 @@ export const categories = mysqlTable('categories', {
   category1: varchar('category1', { length: 15 }).notNull(),
   category2: varchar('category2', { length: 15 }).notNull(),
   logo: text('logo').notNull(),
-  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).default(sql``).notNull(),
-  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).default(sql`NOW(3)`).notNull(),
+  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).notNull(),
+  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).notNull(),
 }, (table) => {
   return {
     unique__category: uniqueIndex('unique__category').on(table.category1, table.category2),
