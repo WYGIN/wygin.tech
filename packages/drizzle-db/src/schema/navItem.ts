@@ -10,7 +10,7 @@ import { footers } from './footer';
 export const nav_items = mysqlTable('nav_items', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
   icon: text('name').notNull(),
-  href: text('href').notNull(),
+  href: varchar('href', { length: 500 }).notNull(),
   label: text('label').notNull(),
 }, (table) => {
   return {

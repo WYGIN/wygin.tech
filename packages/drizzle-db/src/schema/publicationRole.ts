@@ -8,6 +8,7 @@ import { publications } from './publication';
 import { users } from './user';
 
 export const publication_roles = mysqlTable('publication_roles', {
+  id: varchar('id', { length: 12 }).primaryKey().notNull(),
   publication_id: varchar('publication_id', { length: 12 }).notNull(),
   user_id: varchar('user_id', { length: 12 }).notNull(),
   role: roles,
@@ -31,6 +32,7 @@ export const publication_role__relations = relations(publication_roles, ({ one }
 }))
 
 export const insert__publication_roles = createInsertSchema(publication_roles, {
+  id: z.string().length(12),
   publication_id: z.string().length(12),
   user_id: z.string().length(12),
   role: zodRoles,

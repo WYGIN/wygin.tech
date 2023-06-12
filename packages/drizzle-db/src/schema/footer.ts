@@ -14,7 +14,7 @@ export const footers = mysqlTable('footers', {
   show_social_icons: boolean('show_social_icons').notNull().default(true),
 }, (table) => {
   return {
-    unique__logo__show_social_icons: uniqueIndex('unique__logo__show_social_icons').on(table.logo, table.show_social_icons),
+   // unique__logo__show_social_icons: uniqueIndex('unique__logo__show_social_icons').on(table.logo, table.show_social_icons),
     index__id: index('index__id').on(table.id),
   }
 });

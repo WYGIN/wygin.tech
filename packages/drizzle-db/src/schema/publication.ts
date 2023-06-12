@@ -14,8 +14,8 @@ export const publications = mysqlTable('publications', {
   description: text('description'),
   owner_id: varchar('owner_id', { length: 12 }).notNull(),
   logo: text('logo').notNull(),
-  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).default(sql`CURRENT_DATE()`).notNull(),
-  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).notNull().default(sql`NOW()`),
+  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).notNull(),
+  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).notNull(),
 }, (table) => {
   return {
     unique__name: uniqueIndex('unique__name').on(table.name),

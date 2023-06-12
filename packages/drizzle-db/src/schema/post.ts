@@ -21,9 +21,9 @@ export const posts = mysqlTable('posts', {
   status: status,
   author_id: varchar('author_id', { length: 12 }).notNull(),
   contributor_id: varchar('contributor_id', { length: 12 }),
-  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).default(sql`(CURRENT_TIMESTAMP(3))`).notNull(),
+  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).notNull(),
   schema: text('schema').notNull(),
-  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).default(sql`NOW(3)`).notNull(),
+  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).notNull(),
   category_id: varchar('category_id', { length: 12 }).notNull(),
   body: text('body').notNull(),
   header_id: varchar('header_id', { length: 12 }).notNull(),
@@ -35,7 +35,7 @@ export const posts = mysqlTable('posts', {
   return {
     unique__slug__category_id: uniqueIndex('unique__slug__category_id').on(table.slug, table.category_id),
     unique_title: uniqueIndex('unique_title').on(table.title),
-    unique_description: uniqueIndex('unique_description').on(table.description),
+  //  unique_description: uniqueIndex('unique_description').on(table.description),
     index__id: index('index__id').on(table.id),
     index__title: index('index__title').on(table.title),
     index__slug__category_id: index('index__slug__category_id').on(table.slug, table.category_id)

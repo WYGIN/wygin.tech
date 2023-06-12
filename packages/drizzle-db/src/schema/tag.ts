@@ -9,8 +9,8 @@ export const tags = mysqlTable('tags', {
   id: varchar('id', { length: 12 }).primaryKey().notNull(),
   tag: varchar('category1', { length: 15 }).notNull(),
   logo: text('logo').notNull(),
-  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).default(sql`CURRENT_DATE(3)`).notNull(),
-  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).default(sql`NOW(3)`).notNull(),
+  created_on: datetime('created_on', { mode: 'date', fsp: 3 }).notNull(),
+  updated_on: datetime('updated_on', { mode: 'date', fsp: 3 }).notNull(),
 }, (table) => {
   return {
     unique__tag: uniqueIndex('unique__tag').on(table.tag),
