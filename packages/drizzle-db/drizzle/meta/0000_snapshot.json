@@ -95,17 +95,12 @@
       "indexes": {
         "unique__provider__provider_account_id": {
           "name": "unique__provider__provider_account_id",
-          "columns": [
-            "provider",
-            "provider_account_id"
-          ],
+          "columns": ["provider", "provider_account_id"],
           "isUnique": true
         },
         "index__user_id": {
           "name": "index__user_id",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -246,37 +241,27 @@
       "indexes": {
         "unique__slug": {
           "name": "unique__slug",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "isUnique": true
         },
         "unique_title": {
           "name": "unique_title",
-          "columns": [
-            "title"
-          ],
+          "columns": ["title"],
           "isUnique": true
         },
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         },
         "index__title": {
           "name": "index__title",
-          "columns": [
-            "title"
-          ],
+          "columns": ["title"],
           "isUnique": false
         },
         "index__slug": {
           "name": "index__slug",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "isUnique": false
         }
       },
@@ -311,18 +296,12 @@
       "indexes": {
         "unique__post_id__blog_id__user_id": {
           "name": "unique__post_id__blog_id__user_id",
-          "columns": [
-            "post_id",
-            "blog_id",
-            "user_id"
-          ],
+          "columns": ["post_id", "blog_id", "user_id"],
           "isUnique": true
         },
         "index__user_id": {
           "name": "index__user_id",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -378,24 +357,17 @@
       "indexes": {
         "unique__category": {
           "name": "unique__category",
-          "columns": [
-            "category1",
-            "category2"
-          ],
+          "columns": ["category1", "category2"],
           "isUnique": true
         },
         "index_category1": {
           "name": "index_category1",
-          "columns": [
-            "category1"
-          ],
+          "columns": ["category1"],
           "isUnique": false
         },
         "index_category2": {
           "name": "index_category2",
-          "columns": [
-            "category2"
-          ],
+          "columns": ["category2"],
           "isUnique": false
         }
       },
@@ -423,24 +395,17 @@
       "indexes": {
         "unique__publication_id__user_id": {
           "name": "unique__publication_id__user_id",
-          "columns": [
-            "category_id",
-            "user_id"
-          ],
+          "columns": ["category_id", "user_id"],
           "isUnique": true
         },
         "index__category_id": {
           "name": "index__category_id",
-          "columns": [
-            "category_id"
-          ],
+          "columns": ["category_id"],
           "isUnique": false
         },
         "index__user_id": {
           "name": "index__user_id",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -489,16 +454,12 @@
       "indexes": {
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         },
         "index__user_id": {
           "name": "index__user_id",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -535,9 +496,7 @@
       "indexes": {
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         }
       },
@@ -582,9 +541,7 @@
       "indexes": {
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         }
       },
@@ -633,16 +590,12 @@
       "indexes": {
         "unique__href": {
           "name": "unique__href",
-          "columns": [
-            "href"
-          ],
+          "columns": ["href"],
           "isUnique": true
         },
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         }
       },
@@ -776,37 +729,27 @@
       "indexes": {
         "unique__slug": {
           "name": "unique__slug",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "isUnique": true
         },
         "unique_title": {
           "name": "unique_title",
-          "columns": [
-            "title"
-          ],
+          "columns": ["title"],
           "isUnique": true
         },
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         },
         "index__title": {
           "name": "index__title",
-          "columns": [
-            "title"
-          ],
+          "columns": ["title"],
           "isUnique": false
         },
         "index__slug": {
           "name": "index__slug",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "isUnique": false
         }
       },
@@ -954,39 +897,27 @@
       "indexes": {
         "unique__slug__category_id": {
           "name": "unique__slug__category_id",
-          "columns": [
-            "slug",
-            "category_id"
-          ],
+          "columns": ["slug", "category_id"],
           "isUnique": true
         },
         "unique_title": {
           "name": "unique_title",
-          "columns": [
-            "title"
-          ],
+          "columns": ["title"],
           "isUnique": true
         },
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         },
         "index__title": {
           "name": "index__title",
-          "columns": [
-            "title"
-          ],
+          "columns": ["title"],
           "isUnique": false
         },
         "index__slug__category_id": {
           "name": "index__slug__category_id",
-          "columns": [
-            "slug",
-            "category_id"
-          ],
+          "columns": ["slug", "category_id"],
           "isUnique": false
         }
       },
@@ -1049,23 +980,17 @@
       "indexes": {
         "unique__name": {
           "name": "unique__name",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": true
         },
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         },
         "index__name": {
           "name": "index__name",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": false
         }
       },
@@ -1093,24 +1018,17 @@
       "indexes": {
         "unique__publication_id__user_id": {
           "name": "unique__publication_id__user_id",
-          "columns": [
-            "publication_id",
-            "user_id"
-          ],
+          "columns": ["publication_id", "user_id"],
           "isUnique": true
         },
         "index__publication_id": {
           "name": "index__publication_id",
-          "columns": [
-            "publication_id"
-          ],
+          "columns": ["publication_id"],
           "isUnique": false
         },
         "index__user_id": {
           "name": "index__user_id",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -1153,24 +1071,17 @@
       "indexes": {
         "unique__publication_id__user_id": {
           "name": "unique__publication_id__user_id",
-          "columns": [
-            "publication_id",
-            "user_id"
-          ],
+          "columns": ["publication_id", "user_id"],
           "isUnique": true
         },
         "index__user_id": {
           "name": "index__user_id",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         },
         "index__publication_id": {
           "name": "index__publication_id",
-          "columns": [
-            "publication_id"
-          ],
+          "columns": ["publication_id"],
           "isUnique": false
         }
       },
@@ -1212,23 +1123,17 @@
       "indexes": {
         "unique__session_token": {
           "name": "unique__session_token",
-          "columns": [
-            "session_token"
-          ],
+          "columns": ["session_token"],
           "isUnique": true
         },
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         },
         "index__user_id": {
           "name": "index__user_id",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -1277,16 +1182,12 @@
       "indexes": {
         "unique__tag": {
           "name": "unique__tag",
-          "columns": [
-            "category1"
-          ],
+          "columns": ["category1"],
           "isUnique": true
         },
         "index_tag": {
           "name": "index_tag",
-          "columns": [
-            "category1"
-          ],
+          "columns": ["category1"],
           "isUnique": false
         }
       },
@@ -1314,24 +1215,17 @@
       "indexes": {
         "unique__publication_id__user_id": {
           "name": "unique__publication_id__user_id",
-          "columns": [
-            "tag_id",
-            "user_id"
-          ],
+          "columns": ["tag_id", "user_id"],
           "isUnique": true
         },
         "index__tag_id": {
           "name": "index__tag_id",
-          "columns": [
-            "tag_id"
-          ],
+          "columns": ["tag_id"],
           "isUnique": false
         },
         "index__user_id": {
           "name": "index__user_id",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -1389,23 +1283,17 @@
       "indexes": {
         "unique__email": {
           "name": "unique__email",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         },
         "index__id": {
           "name": "index__id",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": false
         },
         "index__name": {
           "name": "index__name",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": false
         }
       },
@@ -1433,24 +1321,17 @@
       "indexes": {
         "unique__follower_id__following_id": {
           "name": "unique__follower_id__following_id",
-          "columns": [
-            "follower_id",
-            "following_id"
-          ],
+          "columns": ["follower_id", "following_id"],
           "isUnique": true
         },
         "index__follower_id": {
           "name": "index__follower_id",
-          "columns": [
-            "follower_id"
-          ],
+          "columns": ["follower_id"],
           "isUnique": false
         },
         "index__following_id": {
           "name": "index__following_id",
-          "columns": [
-            "following_id"
-          ],
+          "columns": ["following_id"],
           "isUnique": false
         }
       },
@@ -1485,9 +1366,7 @@
       "indexes": {
         "unique__token": {
           "name": "unique__token",
-          "columns": [
-            "token"
-          ],
+          "columns": ["token"],
           "isUnique": true
         }
       },

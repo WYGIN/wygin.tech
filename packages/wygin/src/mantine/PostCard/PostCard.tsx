@@ -9,13 +9,14 @@ import {
   Avatar,
   Badge,
   rem,
-} from '@mantine/core';
-import { IconHeart, IconBookmark, IconShare } from '@tabler/icons-react';
-import { qwikify$ } from '@builder.io/qwik-react';
+} from "@mantine/core";
+import { IconHeart, IconBookmark, IconShare } from "@tabler/icons-react";
+import { qwikify$ } from "@builder.io/qwik-react";
 
 const useStyles = createStyles((theme) => ({
   card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    backgroundColor:
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
   },
 
   title: {
@@ -26,7 +27,7 @@ const useStyles = createStyles((theme) => ({
     padding: `${theme.spacing.xs} ${theme.spacing.lg}`,
     marginTop: theme.spacing.md,
     borderTop: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
+      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
   },
 }));
@@ -81,13 +82,25 @@ export function ArticleCardFooter({
           </Text>
           <Group spacing={0}>
             <ActionIcon>
-              <IconHeart size="1.2rem" color={theme.colors.red[6]} stroke={1.5} />
+              <IconHeart
+                size="1.2rem"
+                color={theme.colors.red[6]}
+                stroke={1.5}
+              />
             </ActionIcon>
             <ActionIcon>
-              <IconBookmark size="1.2rem" color={theme.colors.yellow[6]} stroke={1.5} />
+              <IconBookmark
+                size="1.2rem"
+                color={theme.colors.yellow[6]}
+                stroke={1.5}
+              />
             </ActionIcon>
             <ActionIcon>
-              <IconShare size="1.2rem" color={theme.colors.blue[6]} stroke={1.5} />
+              <IconShare
+                size="1.2rem"
+                color={theme.colors.blue[6]}
+                stroke={1.5}
+              />
             </ActionIcon>
           </Group>
         </Group>
@@ -96,4 +109,6 @@ export function ArticleCardFooter({
   );
 }
 
-export const PostCard = qwikify$<ArticleCardFooterProps>(ArticleCardFooter, { eagerness: 'visible' });
+export const PostCard = qwikify$<ArticleCardFooterProps>(ArticleCardFooter, {
+  eagerness: "visible",
+});
