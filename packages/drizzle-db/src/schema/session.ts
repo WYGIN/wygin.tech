@@ -17,18 +17,18 @@ export const sessions = mysqlTable('sessions', {
   }
 });
 
-export const sessionRelations = relations(sessions, ({ one }) => ({
+export const session__relations = relations(sessions, ({ one }) => ({
   user: one(users, {
     fields: [sessions.user_id],
     references: [users.id],
   }),
 }));
 
-export const insertSessions = createInsertSchema(sessions, {
+export const insert__sessions = createInsertSchema(sessions, {
   id: z.string().length(12),
   session_token: z.string(),
   user_id: z.string().length(12),
   expires: z.date(),
 });
 
-export const selectSessions = createSelectSchema(sessions);
+export const select__sessions = createSelectSchema(sessions);
