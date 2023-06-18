@@ -24,14 +24,14 @@ export const accounts = mysqlTable('accounts', {
   }
 });
 
-export const accountRelations = relations(accounts, ({ one }) => ({
+export const account__relations = relations(accounts, ({ one }) => ({
   user: one(users, {
     fields: [accounts.user_id],
     references: [users.id],
   })
 }));
 
-export const insertAccounts = createInsertSchema(accounts, {
+export const insert__accounts = createInsertSchema(accounts, {
   id: z.string().length(12),
   user_id: z.string().length(12),
   type: z.string(),
@@ -46,4 +46,4 @@ export const insertAccounts = createInsertSchema(accounts, {
   session_state: z.string(),
 });
 
-export const selectAccounts = createSelectSchema(accounts);
+export const select__accounts = createSelectSchema(accounts);

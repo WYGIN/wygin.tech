@@ -2,7 +2,7 @@ import { mysqlTable, uniqueIndex, varchar, datetime, text } from 'drizzle-orm/my
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
-export const verificationTokens = mysqlTable('verificationTokens', {
+export const verification_tokens = mysqlTable('verification_tokens', {
   identifier: varchar('identifier', { length: 767 }).notNull(),
   token: varchar('token', { length: 767 }).notNull(),
   expires: datetime('expires', { mode: 'date', fsp: 3 }),
@@ -12,10 +12,10 @@ export const verificationTokens = mysqlTable('verificationTokens', {
   }
 });
 
-export const insertVerificationTokens = createInsertSchema(verificationTokens, {
+export const insert__verification_tokens = createInsertSchema(verification_tokens, {
   identifier: z.string(),
   token: z.string(),
   expires: z.date(),
 });
 
-export const selectUsers = createSelectSchema(verificationTokens);
+export const selectUsers = createSelectSchema(verification_tokens);
