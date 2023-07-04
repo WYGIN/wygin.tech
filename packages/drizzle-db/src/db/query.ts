@@ -26,6 +26,14 @@ import { user_followers } from "../schema/userFollower";
 import { verification_tokens } from "../schema/verificationToken";
 
 export type insert__accounts = InferModel<typeof accounts, "insert">;
+export type update__accounts = Pick<
+  insert__accounts,
+  | "access_token"
+  | "expires_at"
+  | "refresh_token"
+  | "provider"
+  | "provider_account_id"
+>;
 export type insert__blogs = InferModel<typeof blogs, "insert">;
 export type insert__bookmarks = InferModel<typeof bookmarks, "insert">;
 export type insert__categories = InferModel<typeof categories, "insert">;
@@ -67,6 +75,7 @@ export type accountProps = Omit<
 >;
 export type blogProps = Omit<insert__blogs, "slug">;
 export type categoryProps = Omit<insert__categories, "id">;
+export type commentProps = Omit<insert__comments, "id">;
 export type footerProps = Omit<insert__footers, "id">;
 export type headerProps = Omit<insert__headers, "id">;
 export type navProps = Omit<insert__nav_items, "id">;
@@ -79,6 +88,16 @@ export type createUserProps = Omit<insert__users, "id">;
 export type updateUserProps = Omit<insert__users, "email">;
 export type vtokenProps = Omit<insert__verification_tokens, "token">;
 
+export const getAccounts = db
+  .select()
+  .from(accounts)
+  .where(
+    and(
+      eq(accounts.user_id, placeholder("user_id")),
+      eq(accounts.provider, placeholder("provider"))
+    )
+  )
+  .prepare();
 export const getAccountById = db
   .select()
   .from(accounts)
@@ -93,12 +112,12 @@ export const getAccountById = db
   )
   .limit(1)
   .prepare();
-export const createAccount = async (accountData: insert__accounts) =>
+export const createAccount = async (accountData: accountProps) =>
   db.insert(accounts).values({ ...accountData, id: await nanoid() } as any);
-export const updateAccount = (accountData: insert__accounts) =>
+export const updateAccount = (accountData: update__accounts) =>
   db
     .update(accounts)
-    .set(accountData as accountProps)
+    .set(accountData)
     .where(
       and(
         eq(accounts.provider as any, accountData.provider as any),
@@ -125,7 +144,7 @@ export const createBookmark = (bookmarkData: insert__bookmarks) =>
 export const deleteBookmark = (bookmarkData: insert__bookmarks) =>
   db.delete(bookmarks).where(eq(blogs as any, bookmarkData as any));
 
-export const getBlogs = db.query.blogs.findMany();
+export const getBlogs = db.select().from(blogs);
 export const getBlogBySlug = db
   .select()
   .from(blogs)
@@ -170,19 +189,33 @@ export const followCategory = db
     user_id: placeholder("user_id"),
   } as any)
   .prepare();
-export const unfollowCategory = db.delete(category_followers).where({
-  category_id: placeholder("category_id"),
-  user_id: placeholder("user_id"),
-} as any);
-
-export const getCommentsByPostSlug = db.query.posts
-  .findMany({
-    where: eq(posts.id as any, placeholder("post_id") as any),
-    with: {
-      comments: true,
-    },
-  })
+export const unfollowCategory = db
+  .delete(category_followers)
+  .where({
+    category_id: placeholder("category_id"),
+    user_id: placeholder("user_id"),
+  } as any)
   .prepare();
+
+export const getCommentsByPostSlug = db
+  .select()
+  .from(posts)
+  .where(eq(posts.id as any, placeholder("post_id") as any))
+  .fullJoin(comments, eq(comments.post_id, posts.id))
+  .prepare();
+
+export const createComment = async (props: insert__comments) =>
+  db.insert(comments).values({ ...props, id: await nanoid() });
+
+export const updateComment = (props: commentProps) =>
+  db
+    .update(comments)
+    .set(props)
+    .where(eq(comments.id, placeholder("id")))
+    .prepare();
+
+export const deleteComment = (id: string) =>
+  db.delete(comments).where(eq(comments.id, id));
 
 export const getFooterById = db
   .select()
@@ -229,7 +262,7 @@ export const updateNavItem = (navData: insert__nav_items) =>
 export const deleteNavItem = (id: string) =>
   db.delete(nav_items).where(eq(nav_items.id as any, id as any));
 
-export const getPages = db.query.pages.findMany();
+export const getPages = db.select().from(pages);
 export const getPageBySlug = db
   .select()
   .from(pages)
@@ -246,15 +279,18 @@ export const updatePage = (pageData: insert__pages) =>
 export const deletePage = (slug: string) =>
   db.delete(pages).where(eq(pages.slug as any, slug as any));
 
-export const getPosts = db.query.posts.findMany();
-export const getPost = (category1: string, category2: string, slug: string) =>
-  db.query.posts.findFirst({
-    where: and(
-      eq(categories.category1 as any, category1 as any),
-      eq(categories.category2 as any, category2 as any),
-      eq(posts.slug as any, slug as any)
-    ),
-  });
+export const getPosts = db.select().from(posts);
+export const getPost = db
+  .select()
+  .from(posts)
+  .where(
+    and(
+      eq(categories.category1 as any, placeholder("category1")),
+      eq(categories.category2 as any, placeholder("category2")),
+      eq(posts.slug as any, placeholder("slug"))
+    )
+  )
+  .prepare();
 export const createPost = async (postData: insert__posts) =>
   db.insert(posts).values({ ...postData, id: await nanoid() } as any);
 export const updatePost = (postData: insert__posts) =>
@@ -282,7 +318,7 @@ export const getPublication = db
   .from(publications)
   .where(eq(publications.name as any, placeholder("id") as any))
   .prepare();
-export const getPublications = db.query.publications.findMany();
+export const getPublications = db.select().from(publications);
 export const createPublication = async (
   publicationData: insert__publications
 ) =>
@@ -314,12 +350,12 @@ export const removeUserToPublication = (data: insert__publication_roles) =>
     .where(eq(publication_followers as any, data as any));
 
 export const getSession = (token: string) =>
-  db.query.sessions.findFirst({
-    where: eq(sessions.session_token as any, token as any),
-    with: {
-      user: true,
-    },
-  });
+  db
+    .select()
+    .from(sessions)
+    .where(eq(sessions.session_token as any, token as any))
+    .fullJoin(users, eq(sessions.user_id, users.id));
+
 export const createSession = async (data: insert__sessions) =>
   db.insert(sessions).values({ ...data, id: await nanoid() } as any);
 export const updateSession = (data: insert__sessions) =>
@@ -332,7 +368,7 @@ export const deleteSession = (session_token: string) =>
     .delete(sessions)
     .where(eq(sessions.session_token as any, session_token as any));
 
-export const getTags = db.query.tags.findMany();
+export const getTags = db.select().from(tags);
 export const getTag = db
   .select()
   .from(tags)
@@ -399,3 +435,12 @@ export const updateVerificationToken = (data: insert__verification_tokens) =>
     .update(verification_tokens)
     .set(data as vtokenProps)
     .where(eq(verification_tokens.token as any, data.token as any));
+export const deleteVerificationToken = (data: insert__verification_tokens) =>
+  db
+    .delete(verification_tokens)
+    .where(
+      and(
+        eq(verification_tokens.token, data.token),
+        eq(verification_tokens.identifier, data.identifier)
+      )
+    );

@@ -10,7 +10,7 @@ import { relations } from "drizzle-orm";
 import { accounts } from "./account";
 import { roles, zodRoles } from "./role";
 import { sessions } from "./session";
-import { user_follows } from "./userFollower";
+import { user_followers } from "./userFollower";
 import { tag_followers } from "./tagFollower";
 import { publications } from "./publication";
 import { bookmarks } from "./bookmark";
@@ -41,8 +41,8 @@ export const users = mysqlTable(
 export const user__relations = relations(users, ({ many }) => ({
   accounts: many(accounts),
   sessions: many(sessions),
-  following_users: many(user_follows, { relationName: "following_tags" }),
-  follower_user: many(user_follows, { relationName: "follower_users" }),
+  following_users: many(user_followers, { relationName: "following_tags" }),
+  follower_user: many(user_followers, { relationName: "follower_users" }),
   following_tags: many(tag_followers),
   following_publications: many(publications),
   bookmarks: many(bookmarks),
